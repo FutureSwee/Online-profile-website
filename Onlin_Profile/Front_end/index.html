@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Ngomuso Mahlangu</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #82c7f3d8;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        #container {
+            width: 100%; 
+            max-width: 750px;
+            margin: 0 auto;
+            padding: 0.5rem;
+            text-align: center;
+            height: 35vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+        
+        h1 {
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-size: 3.3rem; /* Reduced size from 4rem to 3rem */
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px rgba(30, 246, 253, 0.5);
+        }
+        
+        #animated-heading span {
+            display: inline-block;
+            opacity: 0;
+            transform: translateX(0);
+            animation: float-inward 0.7s forwards;
+        }
+        #animated-heading span.from-left {
+            transform: translateX(-60px);
+            animation-name: float-inward-left;
+        }
+        #animated-heading span.from-right {
+            transform: translateX(60px);
+            animation-name: float-inward-right;
+        }
+        @keyframes float-inward-left {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        @keyframes float-inward-right {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            gap: 2rem;
+        }
+        
+        nav li {
+            position: relative;
+        }
+        
+        .nav-image {
+            width: 180px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 2px 12px rgba(33,150,243,0.08);
+            animation: image-float-in 0.8s cubic-bezier(.77,0,.18,1) both;
+        }
+        .nav-image:hover {
+            transform: scale(1.13) rotate(-6deg) translateY(-12px) skewY(-2deg);
+            box-shadow: 0 16px 32px rgba(33,150,243,0.22);
+            filter: brightness(1.13) saturate(1.25) drop-shadow(0 0 8px #2196f3aa);
+            transition: transform 0.35s cubic-bezier(.77,0,.18,1), box-shadow 0.35s, filter 0.35s;
+        }
+        nav li:hover .nav-image {
+            animation: image-hover-bounce 0.5s cubic-bezier(.77,0,.18,1);
+        }
+        @keyframes image-hover-bounce {
+            0% { transform: scale(1.13) rotate(-6deg) translateY(-12px) skewY(-2deg); }
+            60% { transform: scale(1.18) rotate(-8deg) translateY(-18px) skewY(-3deg); }
+            100% { transform: scale(1.13) rotate(-6deg) translateY(-12px) skewY(-2deg); }
+        }
+        @keyframes image-float-in {
+            0% {
+                opacity: 0;
+                transform: scale(0.8) translateY(40px) rotate(-5deg);
+                filter: blur(2px);
+            }
+            60% {
+                opacity: 1;
+                transform: scale(1.05) translateY(-8px) rotate(2deg);
+                filter: blur(0.5px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0) rotate(0deg);
+                filter: blur(0);
+            }
+        }
+        /* Stagger animation for each image */
+        nav li:nth-child(1) .nav-image { animation-delay: 0.1s; }
+        nav li:nth-child(2) .nav-image { animation-delay: 0.25s; }
+        nav li:nth-child(3) .nav-image { animation-delay: 0.4s; }
+        nav li:nth-child(4) .nav-image { animation-delay: 0.55s; }
+        
+        .image-text {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 12px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+        nav li:hover .image-text,
+        nav li:focus-within .image-text {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            padding: 1rem;
+            flex-shrink: 0;
+        }
+    </style>
+</head>
+<body>  
+    <main>
+        <header>
+            <div id="container">
+                <h1 id="animated-heading">Ngomuso&nbsp;&nbsp;Mahlangu</h1>
+                <p>Final Year software Developer | Java | OOP | JPQL | SQL | JavaScript</p>
+            </div>         
+        </header>
+        <nav>
+            <ul>
+                <li>
+                    <a href="about.html">
+                        <img src="Pictures/about.jpeg" alt="About Me" class="nav-image">
+                        <div class="image-text">
+                            <h3>About</h3>
+                            <p>My background and skills</p>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="timeline.html">
+                        <img src="Pictures/journey.jpeg" alt="My Journey" class="nav-image">
+                        <div class="image-text">
+                            <h3>My Journey</h3>
+                            <p>My development journey</p>
+                        </div>
+                    </a>
+                </li>            
+                <li>
+                    <a href="projects.html">
+                        <img src="Pictures/projects.jpeg" alt="Projects" class="nav-image">
+                        <div class="image-text">
+                            <h3>Projects</h3>
+                            <p>Projects i worked</p>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="contact.html">
+                        <img src="Pictures/contact.jpeg" alt="Contact" class="nav-image">
+                        <div class="image-text">
+                            <h3>Contact</h3>
+                            <p>Get in touch</p>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <footer>
+            <p>&copy; 2025 Ngomuso Mahlangu. Built by future in VS Code.</p>
+        </footer>
+    </main>
+
+    <script>
+        // Floating inward heading animation
+        const heading = document.getElementById('animated-heading');
+        const text = heading.textContent;
+        heading.textContent = '';
+        for (let i = 0; i < text.length; i++) {
+            const span = document.createElement('span');
+            span.textContent = text[i];
+            if (text[i] !== ' ') {
+                span.className = (i % 2 === 0) ? 'from-left' : 'from-right';
+                span.style.animationDelay = (i * 0.07) + 's';
+            }
+            heading.appendChild(span);
+        }
+    </script>
+</body>  
+</html>
