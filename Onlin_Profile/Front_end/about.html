@@ -1,11 +1,109 @@
 <html>
 <head>
-    <title>My Web Page</title>
+    <title>About me</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
     <body>
-        <h1>Dudu Mahlangu</h1>
+        <div class="personal-info">
+            <h1>Ngomuso Mahlangu</h1>
+            <p>Welcome to my personal page! I am a passionate individual with a love for technology and design. This page is a brief introduction to who I am and what I do.</p>
+            <br/>
+            <h3>Objective</h3>
+            <p>Seeking challenging opportunities where i can fully use my skills  for the success of the organization</p>
+            <br/>
+            <h3>Personal Details</h3>
+            <ul>
+                <li><strong>Name:</strong> Ngomuso </li>
+                <li><strong>Surname:</strong> Mahlangu</li>
+                <li><strong>Age:</strong> 24</li>
+                <li><strong>Date of Birth:</strong> 2001-04-20</li>
+                <li><strong>ID number:</strong> 0104206081085</li>
+            </ul>
+        </div>
+
+        <div class="professional-summary">
+            <h3>Professional Summary</h3>
+            <p>
+                A passionate IT student specializing in software and database development, seeking hands-on industry experience to bridge academic knowledge with real-world applications. Skilled in Java, SQL, and web technologies, with strong problem-solving abilities and adaptability. Committed to contributing fresh perspectives while gaining practical skills to grow with an innovative team. Eager to collaborate with companies that value continuous learning and technological advancement.
+            </p>
+        </div>
+        
+        <div class="chat-bot">
+            <p>Please click the button below to chat with <strong>future</strong>, he will tell you everything about me</p>
+            <button id="chatButton">Chat with Future</button>
+        </div>
+
+        <!-- Chatbot Model -->
+        <div id="chatModal" style="display:none; position:fixed; left:0; top:0; width:100vw; height:100vh; background:rgba(0,0,0,0.35); z-index:9999; align-items:center; justify-content:center;">
+            <div style="background:#fff; border-radius:12px; max-width:350px; width:90%; padding:1.5rem; box-shadow:0 8px 32px #0002; position:relative;">
+                <button id="closeChat" style="position:absolute; top:10px; right:48px; background:none; border:none; font-size:1.3rem; cursor:pointer;">&times;</button>
+                <button id="doneChat" style="position:absolute; top:10px; right:14px; background:#2196f3; color:#fff; border:none; border-radius:6px; padding:0.2rem 0.8rem; font-size:1rem; cursor:pointer;">Done</button>
+                <h3 style="margin-top:0; display:flex; align-items:center; gap:0.5rem;">
+                    <span style="display:inline-block; font-size:1.3em; color:#2196f3;">🤖</span>
+                    Future
+                </h3>
+                <div id="chatWindow" style="height:180px; overflow-y:auto; border:1px solid #eee; border-radius:8px; padding:0.5rem; margin-bottom:1rem; background:#f8fafd;">
+                    <div style="margin-bottom:8px;"><strong>Future:</strong>Hi! Welcome to Ngomuso Mahlangu personal profile i will be you assistant...</div>
+                    <div style="margin-bottom:8px;"><strong>Future:</strong>Ask me anything about Ngomuso</div>
+                </div>
+                <form id="chatForm" style="display:flex; gap:0.5rem;">
+                    <input id="chatInput" type="text" placeholder="Type your question..." style="flex:1; padding:0.5rem; border-radius:6px; border:1px solid #ccc;">
+                    <button type="submit" style="padding:0.5rem 1rem; border-radius:6px; border:none; background:#2196f3; color:#fff;">Send</button>
+                </form>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2025 Ngomuso Mahlangu. Built by future in VS Code.</p>
+        </footer>
     </body>
 </html>
+<script>
+        document.getElementById('chatButton').onclick = function() {
+            document.getElementById('chatModal').style.display = 'flex';
+        };
+        document.getElementById('closeChat').onclick = function() {
+            document.getElementById('chatModal').style.display = 'none';
+            resetChatWindow();
+        };
+        document.getElementById('doneChat').onclick = function() {
+            const chatWindow = document.getElementById('chatWindow');
+            chatWindow.innerHTML += `<div style="margin-bottom:8px;"><strong>Future:</strong>It was great chatting with you! Ngomuso is dedicated, talented, and always eager to learn and help others succeed. Have a wonderful day!</div>`;
+            chatWindow.scrollTop = chatWindow.scrollHeight;
+            setTimeout(() => {
+                document.getElementById('chatModal').style.display = 'none';
+                resetChatWindow();
+            }, 2000); // 2 seconds
+        };
+        document.getElementById('chatForm').onsubmit = function(e) {
+            e.preventDefault();
+            const input = document.getElementById('chatInput');
+            const chatWindow = document.getElementById('chatWindow');
+            const userMsg = input.value.trim();
+            if (!userMsg) return;
+            chatWindow.innerHTML += `<div style="margin-bottom:8px; text-align:right;"><strong>You:</strong> ${userMsg}</div>`;
+            // Simple bot responses
+            let botMsg = "I'm Future, your assistant! Ngomuso is a passionate IT student and developer.";
+            if (/name|who/i.test(userMsg)) botMsg = "Ngomuso Mahlangu is a final year software developer.";
+            else if (/skills|languages|tech/i.test(userMsg)) botMsg = "Ngomuso is skilled in Java, SQL, JavaScript, and web technologies.";
+            else if (/age|old/i.test(userMsg)) botMsg = "Ngomuso is 24 years old.";
+            else if (/goal|objective|aim/i.test(userMsg)) botMsg = "Ngomuso's objective is to use his skills for organizational success and continuous learning.";
+            else if (/contact|email|reach/i.test(userMsg)) botMsg = "You can contact Ngomuso via the contact page on this site.";
+            else if (/experience|background/i.test(userMsg)) botMsg = "Ngomuso specializes in software and database development and is seeking hands-on industry experience.";
+            setTimeout(() => {
+                chatWindow.innerHTML += `<div style="margin-bottom:8px;"><strong>Future:</strong> ${botMsg}</div>`;
+                chatWindow.scrollTop = chatWindow.scrollHeight;
+            }, 500);
+            input.value = '';
+        };
+
+        function resetChatWindow() {
+            const chatWindow = document.getElementById('chatWindow');
+            chatWindow.innerHTML = `
+                <div style="margin-bottom:8px;"><strong>Future:</strong>Hi! Welcome to Ngomuso Mahlangu personal profile i will be you assistant...</div>
+                <div style="margin-bottom:8px;"><strong>Future:</strong>Ask me anything about Ngomuso</div>
+            `;
+        }
+</script>
