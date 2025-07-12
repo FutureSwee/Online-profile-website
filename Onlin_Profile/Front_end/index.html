@@ -12,13 +12,13 @@
             background-color: #82c7f3d8;
             font-family: Arial, sans-serif;
         }
-        
+
         body {
             min-height: 100vh;
             display: flex;
             flex-direction: column;
         }
-        
+
         #container {
             width: 100%; 
             max-width: 750px;
@@ -30,10 +30,10 @@
             flex-direction: column;
             justify-content: flex-end;
         }
-        
+
         h1 {
             font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-            font-size: 3.3rem; /* Reduced size from 4rem to 3rem */
+            font-size: 3.3rem;
             font-weight: bold;
             color: #333;
             margin-bottom: 0.5rem;
@@ -41,77 +41,105 @@
             text-transform: uppercase;
             text-shadow: 0 0 10px rgba(30, 246, 253, 0.5);
         }
-        
+
         #animated-heading span {
             display: inline-block;
             opacity: 0;
             transform: translateX(0);
             animation: float-inward 0.7s forwards;
         }
+
         #animated-heading span.from-left {
             transform: translateX(-60px);
             animation-name: float-inward-left;
         }
+
         #animated-heading span.from-right {
             transform: translateX(60px);
             animation-name: float-inward-right;
         }
+
         @keyframes float-inward-left {
             to {
                 opacity: 1;
                 transform: translateX(0);
             }
         }
+
         @keyframes float-inward-right {
             to {
                 opacity: 1;
                 transform: translateX(0);
             }
         }
-        
-        nav {
+
+        .carousel-container {
+            width: 100%;
+            max-width: 750px;
+            margin: 0 auto;
+            padding: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .carousel-track {
             display: flex;
             justify-content: center;
+            align-items: flex-end;
             gap: 2rem;
-            margin-top: 2rem;
+            transition: transform 0.5s ease;
         }
-        
-        nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            gap: 2rem;
-        }
-        
-        nav li {
+
+        .carousel-item {
             position: relative;
+            transition: all 0.3s ease;
+            flex: 0 0 auto;
         }
-        
+
+        .carousel-item a {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
         .nav-image {
             width: 180px;
             height: 180px;
             object-fit: cover;
             border-radius: 12px;
             cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: all 0.3s ease;
             box-shadow: 0 2px 12px rgba(33,150,243,0.08);
             animation: image-float-in 0.8s cubic-bezier(.77,0,.18,1) both;
         }
+
+        /* Center image is larger */
+        .carousel-item.center .nav-image {
+            width: 220px;
+            height: 220px;
+            transform: translateY(-20px);
+        }
+
+        /* Side images */
+        .carousel-item.left .nav-image,
+        .carousel-item.right .nav-image {
+            width: 180px;
+            height: 180px;
+            opacity: 0.8;
+        }
+
+        /* Far side images (hidden) */
+        .carousel-item:not(.center):not(.left):not(.right) {
+            opacity: 0;
+            pointer-events: none;
+        }
+
         .nav-image:hover {
             transform: scale(1.13) rotate(-6deg) translateY(-12px) skewY(-2deg);
             box-shadow: 0 16px 32px rgba(33,150,243,0.22);
             filter: brightness(1.13) saturate(1.25) drop-shadow(0 0 8px #2196f3aa);
-            transition: transform 0.35s cubic-bezier(.77,0,.18,1), box-shadow 0.35s, filter 0.35s;
         }
-        nav li:hover .nav-image {
-            animation: image-hover-bounce 0.5s cubic-bezier(.77,0,.18,1);
-        }
-        @keyframes image-hover-bounce {
-            0% { transform: scale(1.13) rotate(-6deg) translateY(-12px) skewY(-2deg); }
-            60% { transform: scale(1.18) rotate(-8deg) translateY(-18px) skewY(-3deg); }
-            100% { transform: scale(1.13) rotate(-6deg) translateY(-12px) skewY(-2deg); }
-        }
+
         @keyframes image-float-in {
             0% {
                 opacity: 0;
@@ -129,12 +157,7 @@
                 filter: blur(0);
             }
         }
-        /* Stagger animation for each image */
-        nav li:nth-child(1) .nav-image { animation-delay: 0.1s; }
-        nav li:nth-child(2) .nav-image { animation-delay: 0.25s; }
-        nav li:nth-child(3) .nav-image { animation-delay: 0.4s; }
-        nav li:nth-child(4) .nav-image { animation-delay: 0.55s; }
-        
+
         .image-text {
             position: absolute;
             top: 0;
@@ -152,12 +175,13 @@
             transition: opacity 0.3s;
             pointer-events: none;
         }
-        nav li:hover .image-text,
-        nav li:focus-within .image-text {
+
+        .carousel-item:hover .image-text,
+        .carousel-item:focus-within .image-text {
             opacity: 1;
             pointer-events: auto;
         }
-        
+
         footer {
             text-align: center;
             margin-top: 2rem;
@@ -174,46 +198,14 @@
                 <p>Final Year software Developer | Java | OOP | JPQL | SQL | JavaScript</p>
             </div>         
         </header>
-        <nav>
-            <ul>
-                <li>
-                    <a href="about.html">
-                        <img src="Pictures/about.jpeg" alt="About Me" class="nav-image">
-                        <div class="image-text">
-                            <h3>About</h3>
-                            <p>My background and skills</p>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="timeline.html">
-                        <img src="Pictures/journey.jpeg" alt="My Journey" class="nav-image">
-                        <div class="image-text">
-                            <h3>My Journey</h3>
-                            <p>My development journey</p>
-                        </div>
-                    </a>
-                </li>            
-                <li>
-                    <a href="projects.html">
-                        <img src="Pictures/projects.jpeg" alt="Projects" class="nav-image">
-                        <div class="image-text">
-                            <h3>Projects</h3>
-                            <p>Projects i worked</p>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="contact.html">
-                        <img src="Pictures/contact.jpeg" alt="Contact" class="nav-image">
-                        <div class="image-text">
-                            <h3>Contact</h3>
-                            <p>Get in touch</p>
-                        </div>
-                    </a>
-                </li>
-            </ul>
-        </nav>
+        
+        <div class="carousel-container">
+            <div class="carousel-track" id="carouselTrack">
+                <!-- Items will be injected by JavaScript -->
+            </div>
+            <!-- Removed the carousel-nav (dots) below -->
+        </div>
+        
         <footer>
             <p>&copy; 2025 Ngomuso Mahlangu. Built by future in VS Code.</p>
         </footer>
@@ -233,6 +225,81 @@
             }
             heading.appendChild(span);
         }
+
+        const carouselItems = [
+            {
+                to: "about.html",
+                image: "Pictures/about.jpeg",
+                alt: "About Me",
+                title: "About",
+                description: "My background and skills"
+            },
+            {
+                to: "timeline.html", 
+                image: "Pictures/journey.jpeg",
+                alt: "My Journey",
+                title: "My Journey", 
+                description: "My development journey"
+            },
+            {
+                to: "projects.html",
+                image: "Pictures/projects.jpeg", 
+                alt: "Projects",
+                title: "Projects",
+                description: "Projects I worked on"
+            },
+            {
+                to: "contact.html",
+                image: "Pictures/contact.jpeg",
+                alt: "Contact", 
+                title: "Contact",
+                description: "Get in touch"
+            }
+        ];
+
+        const carouselTrack = document.getElementById('carouselTrack');
+        let currentIndex = 1; // Start with middle item
+
+        function updateCarousel() {
+            // Clear the carousel
+            carouselTrack.innerHTML = '';
+            
+            // Always show 3 items (left, center, right)
+            const totalItems = carouselItems.length;
+            
+            // Add items to carousel
+            for (let i = -1; i <= 1; i++) {
+                const itemIndex = (currentIndex + i + totalItems) % totalItems;
+                const item = carouselItems[itemIndex];
+                
+                const carouselItem = document.createElement('div');
+                carouselItem.className = 'carousel-item';
+                if (i === 0) carouselItem.classList.add('center');
+                else if (i === -1) carouselItem.classList.add('left');
+                else if (i === 1) carouselItem.classList.add('right');
+                
+                carouselItem.innerHTML = `
+                    <a href="${item.to}">
+                        <img src="${item.image}" alt="${item.alt}" class="nav-image">
+                        <div class="image-text">
+                            <h3>${item.title}</h3>
+                            <p>${item.description}</p>
+                        </div>
+                    </a>
+                `;
+                
+                carouselTrack.appendChild(carouselItem);
+            }
+        }
+
+        // Auto-rotate carousel
+        setInterval(() => {
+            currentIndex = (currentIndex + 1) % carouselItems.length;
+            updateCarousel();
+        }, 4000);
+
+        // Initialize carousel
+        updateCarousel();
     </script>
 </body>  
 </html>
