@@ -1,0 +1,295 @@
+/* Make the body a flex column and ensure it fills the viewport */
+body {
+    background: linear-gradient(180deg, #82c7f3 0%, #6bb3e6 100%);
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    color: #183153;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    height: 100vh;
+    box-sizing: border-box;
+}
+
+/* Main wrapper to control all content height */
+#main-wrapper {
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 0;
+    height: 100%;
+}
+
+/* Header section */
+.personal-info {
+    background: rgba(24, 49, 83, 0.08);
+    border-radius: 0 0 18px 18px;
+    box-shadow: 0 4px 24px #18315318;
+    padding: 2rem 2.5rem 1.5rem 2.5rem;
+    margin: 0 0 1.5rem 0;
+    max-width: none;
+    width: 100vw;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.personal-info h1 {
+    font-size: 2.7rem;
+    letter-spacing: 0.12em;
+    color: #183153;
+    text-align: center;
+    margin-bottom: 0.5rem;
+    font-family: 'Georgia', serif;
+    text-shadow: 0 2px 12px #2196f355;
+}
+
+.personal-info h3 {
+    color: #0d2340;
+    margin-top: 1.2rem;
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+    letter-spacing: 0.04em;
+}
+
+/* Main flex row for details and summary */
+.main-flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch;
+    gap: 2.5rem;
+    width: 100vw;
+    max-width: none;
+    margin: 0 0 2rem 0;
+    padding: 0 2vw;
+    box-sizing: border-box;
+    flex: 1 0 auto;
+    min-height: 0;
+}
+
+.personal-details {
+    background: rgba(24, 49, 83, 0.11);
+    border-radius: 16px;
+    box-shadow: 0 2px 12px #18315311;
+    padding: 1.5rem 2rem;
+    min-width: 200px;
+    flex: 0 1 30%;
+    align-self: flex-start;
+    min-height: 100%;
+    width: 100%;
+    max-width: none;
+    box-sizing: border-box;
+}
+
+.personal-details h3 {
+    color: #0d2340;
+    margin-top: 0;
+    margin-bottom: 0.7rem;
+    font-size: 1.13rem;
+    letter-spacing: 0.04em;
+}
+
+.personal-details ul {
+    list-style: none;
+    padding: 0;
+    margin: 0.5rem 0 0 0;
+}
+
+.personal-details ul li {
+    margin-bottom: 0.4rem;
+    font-size: 1rem;
+}
+
+.professional-summary {
+    background: rgba(24, 49, 83, 0.13);
+    border-radius: 16px;
+    border-left: 5px solid #2196f3;
+    box-shadow: 0 2px 12px #18315311;
+    padding: 1.5rem 2rem;
+    flex: 0 1 70%;
+    min-width: 220px;
+    align-self: flex-start;
+    min-height: 100%;
+    width: 100%;
+    max-width: none;
+    box-sizing: border-box;
+}
+
+.professional-summary h3 {
+    color: #0d2340;
+    margin-top: 0;
+    margin-bottom: 0.7rem;
+    font-size: 1.13rem;
+    letter-spacing: 0.04em;
+}
+
+.professional-summary p {
+    margin: 0.5rem 0 0 0;
+    color: #183153;
+    font-size: 1.08rem;
+    line-height: 1.6;
+}
+
+/* Chatbot section */
+.chat-bot {
+    background: rgba(24, 49, 83, 0.10);
+    text-align: center;
+    margin: 2rem 0 0 0;
+    padding: 1.5rem 2rem 2.5rem 2rem;
+    border-radius: 16px;
+    width: 100vw;
+    max-width: none;
+    box-shadow: 0 2px 12px #18315311;
+    box-sizing: border-box;
+}
+
+/* Footer always at the bottom */
+footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding: 2rem 0 1rem 0;
+    color: #183153;
+    font-size: 1.08rem;
+    letter-spacing: 0.03em;
+    width: 100vw;
+    background: transparent;
+    flex-shrink: 0;
+}
+
+/* Chatbot Modal Styles */
+#chatModal {
+    display: none;
+    position: fixed;
+    left: 0; top: 0;
+    width: 100vw; height: 100vh;
+    background: rgba(24, 49, 83, 0.25);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+}
+
+#chatModal > div {
+    background: #f8fafd;
+    border-radius: 16px;
+    max-width: 370px;
+    width: 92%;
+    padding: 1.5rem 1.2rem 1.2rem 1.2rem;
+    box-shadow: 0 8px 32px #18315333;
+    position: relative;
+    border: 1.5px solid #2196f3;
+}
+
+#chatModal h3 {
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #183153;
+    font-size: 1.2rem;
+    letter-spacing: 0.04em;
+}
+
+#chatWindow {
+    height: 180px;
+    overflow-y: auto;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    background: #e3f0fa;
+    color: #183153;
+    font-size: 1rem;
+}
+
+#chatForm {
+    display: flex;
+    gap: 0.5rem;
+}
+
+#chatInput {
+    flex: 1;
+    padding: 0.5rem;
+    border-radius: 6px;
+    border: 1px solid #b0c4de;
+    font-size: 1rem;
+    background: #fafdff;
+    color: #183153;
+}
+
+#chatForm button[type="submit"] {
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    border: none;
+    background: #2196f3;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+#chatForm button[type="submit"]:hover {
+    background: #183153;
+}
+
+#closeChat, #doneChat {
+    font-size: 1.2rem;
+    cursor: pointer;
+    border: none;
+    background: none;
+    color: #183153;
+    transition: color 0.2s;
+}
+#closeChat:hover {
+    color: #e53935;
+}
+#doneChat {
+    background: #2196f3;
+    color: #fff;
+    border-radius: 6px;
+    padding: 0.2rem 0.8rem;
+    font-size: 1rem;
+    right: 14px;
+    top: 10px;
+    position: absolute;
+}
+#doneChat:hover {
+    background: #183153;
+    color: #fff;
+}
+
+#chatButton {
+    background: linear-gradient(90deg, #183153 60%, #2196f3 100%);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 0.9rem 2.5rem;
+    font-size: 1.15rem;
+    margin-top: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 4px 16px #18315322;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    outline: none;
+}
+
+#chatButton:hover, #chatButton:focus {
+    background: linear-gradient(90deg, #2196f3 60%, #183153 100%);
+    color: #fff;
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 8px 24px #18315333;
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+    .main-flex {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+    }
+    .personal-details, .professional-summary {
+        max-width: 95vw;
+        width: 100%;
+    }
+}
